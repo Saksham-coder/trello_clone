@@ -92,6 +92,30 @@ userRouter.post('/login', async (req, res, next) => {
   }
 });
 
+userRouter.patch('/update/:id', (req, res, next) => {
+  console.log("HI for update roue")
+  
+  const body = {}
+  if (req.body.password.length > 6){
+    const hashPassword = bcrypt.hash(req.body.password, 10)
+    body.password = hashPassword
+  }
+  if (body.password &&  body.password.length < 6){
+    return res.status(401).json({ message: 'Password length Failed' });
+  }
+  if (req.body.email.length > 6){
+    body.email = email
+  }
+  if (body.email &&  body.email.length < 6){
+    return res.status(401).json({ message: 'Email not suitable' });
+  }
+  console.log("NOW BEFORE UPDATE BODY", body)
+  User.findByIdAndUpdate({ _id: req.params.id }, body)
+  .exec()
+  .then(() => res.status(200).json({ message: 'User Updated' }))
+  .catch(err => res.status(500).json(err));
+} )
+
 // @route DELETE /api/user/:userId
 // @desc delete the user with provided user Id
 // @ access private TODO make it private

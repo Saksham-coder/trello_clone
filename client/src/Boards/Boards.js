@@ -42,7 +42,7 @@ class Boards extends Component {
         <textarea
           ref={this.myRef}
           value={this.state.newBoardTitle}
-          placeholder={'add a board title'}
+          placeholder={'Add a board title'}
           autoFocus
           onChange={this.onBoardTitleChangeHandler}
           className={classes.add_board__input}
@@ -51,8 +51,8 @@ class Boards extends Component {
       );
     } else {
       return (
-        <p className={classes.board__item} onClick={this.onAddBoardHandler}>
-          <span className={classes.board__item__title}>Add a board</span>
+        <p className={classes.board__item} onClick={this.onAddBoardHandler} style={{ paddingRight: '5px', textAlign: 'center', paddingTop: '38px', backgroundColor: 'lightblue' }}>
+          <span style={{color: 'black'}} className={classes.board__item__title} >Add a board</span>
         </p>
       );
     }
@@ -75,13 +75,6 @@ class Boards extends Component {
       } else {
         boardList = (
           <React.Fragment>
-            <h3 className={classes.board__empty__title}>
-              No boards were created
-            </h3>
-            {/*<Backdrop clickedOutside={this.onBoardTitleOutsideClicked}>*/}
-            {/*{' '}*/}
-            {/*{this.boardWrapper()}*/}
-            {/*</Backdrop>*/}
           </React.Fragment>
         );
       }

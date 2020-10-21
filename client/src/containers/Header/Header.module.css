@@ -35,6 +35,14 @@
     color: #cdd2dA;
 }
 
+.header__update{
+    position: absolute;
+    right:15rem;
+    top:1rem;
+    cursor:pointer;
+    text-decoration: none;
+    color: #cdd2dA;
+}
 
 .header__boards {
     position: absolute;;

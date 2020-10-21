@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import TextFieldGroup from '../../common/TextFieldGroup';
 import { connect } from 'react-redux';
 import { loginUser } from '../../store/actions/authActions';
+import './Login.css'
 class Login extends Component {
   state = {
     email: '',
@@ -40,17 +41,19 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className={'register'}>
-        <h3 className={'register__title'}>Create a Trello Account</h3>
-        <p>
-          {' '}
-          <span className={'register__span'}>or</span>{' '}
-          <Link to={'/register'} className={'register__anchor-tag'}>
-            create an account
-          </Link>
-        </p>
-
-        <form noValidate onSubmit={this.onSubmitHandler}>
+      <Fragment>
+      <div  className='forlogin'>
+        <div className='login_box'> 
+          <div className='login_box_left'>
+          </div>
+          <div className='login_box_right'>
+          <div className='login_box_right_padd'>
+              <h1 className="text-primary">Welcome</h1>
+              <p className='text-secondary'>Trello Account</p>
+              <p className="lead">
+                {/* <i className="fas fa-user" /> Sign Into Your Account */}
+              </p>
+              <form noValidate onSubmit={this.onSubmitHandler}>
           <TextFieldGroup
             placeholder={'e.g.,ender@battle.edu'}
             name={'email'}
@@ -73,7 +76,14 @@ class Login extends Component {
           <button className={'register__Button button--green'}>Log In</button>
         </form>
         {errors.message ? <p>{errors.message}</p> : null}
-      </div>
+              <p className="my-1">
+                Don't have an account? <Link to="/register">Sign Up</Link>
+              </p>
+          </div>
+          </div>
+        </div>
+        </div>
+      </Fragment>
     );
   }
 }

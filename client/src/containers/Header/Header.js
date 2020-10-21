@@ -28,6 +28,9 @@ class Header extends Component {
         >
           Logout
         </a>
+        <Link to={'/update'} className={classes.header__update}>
+            Update Profile
+          </Link>
       </React.Fragment>
     );
 

@@ -36,17 +36,19 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className={'register'}>
-        <h3 className={'register__title'}>Create a Trello Account</h3>
-        <p>
-          {' '}
-          <span className={'register__span'}>or</span>{' '}
-          <Link to={'/'} className={'register__anchor-tag'}>
-            sign in to your account
-          </Link>
-        </p>
-
-        <form noValidate onSubmit={this.onSubmitHandler}>
+       <div  className='forlogin'>
+       <div className='login_box'> 
+         <div className='login_box_left_signup'>
+           {/* <img src='https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='' /> */}
+         </div>
+         <div className='login_box_right'>
+         <div className='login_box_right_padd'>
+             <h1 className="text-primary">Join Now !</h1>
+             <p className='text-secondary'>Create a Account in Trello Clone</p>
+             <p className="lead">
+               {/* <i className="fas fa-user" /> Sign Into Your Account */}
+             </p>
+             <form noValidate onSubmit={this.onSubmitHandler}>
           <TextFieldGroup
             placeholder={'e.g.,Ender Wiggin'}
             type={'text'}
@@ -86,7 +88,13 @@ class Register extends Component {
           <button className={'register__Button'}>Create New Account</button>
         </form>
         {errors.message ? <p>{errors.message}</p> : null}
-      </div>
+             <p className="my-1">
+               Already have an account? <Link to="/">Login</Link>
+             </p>
+         </div>
+         </div>
+       </div>
+       </div>
     );
   }
 }

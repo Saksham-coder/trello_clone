@@ -71,6 +71,30 @@ export const loginUser = userData => {
   };
 };
 
+export const updateUser = userData => {
+  const config3 = {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }
+
+  console.log("userData", userData)
+  const id = userData.id
+  delete userData.id
+
+  return dispatch => {
+    axios
+      .patch(`/users/update/${id}`,JSON.stringify(userData), config3)
+      .then(res => {
+        // history.push('/');
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        return dispatch({ type: GET_ERRORS, payload: err.response.data });
+      });
+  };
+}
+
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import classes from './List.module.scss';
 import Column from '../Column/Column';
 import {
@@ -17,6 +18,7 @@ class List extends Component {
     areAllCardsReceived: false,
     newColumnTitle: '',
     isNewColumnTitleInEdit: false,
+    mainId: '',
   };
 
   onAddColumnHandler = () => {
@@ -118,6 +120,7 @@ class List extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("Checking Porps",this.props.card,this.props.list)
     if (this.props.list.columns && this.props.list.columnOrder) {
       if (!this.state.areAllCardsReceived) {
         const columnIds = this.props.list.columnOrder;
@@ -125,7 +128,6 @@ class List extends Component {
         this.setState({ areAllCardsReceived: true });
       }
     }
-    // console.log('prevProps',prevProps,'this.props',this.props);
   }
 
   render() {
@@ -159,18 +161,24 @@ class List extends Component {
                   ref={provided.innerRef}
                 >
                   {this.props.list.columnOrder.map((columnId, index) => {
+                    console.log("CHECKING List  FULL", this.props.list)
+                    console.log("CHECKING COLUMN IN FIRST MAP LOOP", this.props.list.columnOrder)
+                    console.log("CHECKING COLUMN IN columnId", columnId)
                     const column = this.props.list.columns[columnId];
+                    {console.log("CHECKING", column)}
+
                     const cards = column.cardIds.map(
                       cardId => this.props.cards.cards[cardId]
                     );
 
-                    return (
+                    return ( column && (
                       <Column
                         key={column.id}
                         column={column}
                         cards={cards}
                         index={index}
                       />
+                    )
                     );
                   })}
 
@@ -194,9 +202,14 @@ class List extends Component {
 const mapStateToProps = state => {
   return {
     cards: state.cards,
-    list: state.list,
+    list: state.list, 
   };
 };
+
+List.propsTypes = {
+  cards: PropTypes.object.isRequired ,
+  list: PropTypes.object.isRequired  ,
+}
 
 export default connect(
   mapStateToProps,

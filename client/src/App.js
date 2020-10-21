@@ -10,6 +10,7 @@ import Board from './containers/Board/Board';
 
 import Header from './containers/Header/Header';
 import PrivateRoute from './common/PrivateRoute';
+import Update from './containers/auth/Update';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
         <Switch>
           <Route exact path={'/'} component={Login} />
           <Route exact path={'/register'} component={Register} />
-
+          <PrivateRoute exact path={'/update'} component={Update} />
           <PrivateRoute exact path={'/boards/:boardId'} component={Board} />
           <PrivateRoute path={'/boards'} component={Boards} />
         </Switch>
