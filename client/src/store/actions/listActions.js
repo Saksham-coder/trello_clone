@@ -8,7 +8,11 @@ import {
   SET_CURRENT_CARDS,
 } from './actionTypes';
 import axios from '../../axios-users';
-import uuid from 'uuid';
+// import uuid from 'uuid';
+// import {v1 as uuid} from "uuid";
+// import uuid from 'uuid/v1'
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const reorderCard = payload => {
   return async dispatch => {
@@ -161,7 +165,7 @@ export const editColumnTitle = (editedTitle, columnId) => {
 export const addColumn = (boardId, columnTitle, cardIds = []) => {
   return async dispatch => {
     if (boardId && columnTitle) {
-      const columnId = uuid();
+      const columnId = uuidv4();
       const payload = {
         title: columnTitle,
         cardIds,

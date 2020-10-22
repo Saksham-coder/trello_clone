@@ -1,6 +1,8 @@
 import axios from '../../axios-users';
 import { ADD_CARD, EDIT_CARD_TITLE } from './actionTypes';
-import uuid from 'uuid';
+// import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const editCardTitle = (editedCardTitle, cardId) => {
   return dispatch => {
@@ -21,7 +23,7 @@ export const addCard = (newCardTitle, columnId) => {
   return async dispatch => {
     const payload = {
       title: newCardTitle,
-      cardId: uuid(),
+      cardId: uuidv4(),
       columnId,
     };
     console.log(payload);
